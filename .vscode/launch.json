@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Dalel",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "edge",
+            "flutterMode": "debug",
+            "args": ["--web-port", "8080"]
+        },
+        {
+            "name": "Dalel (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "edge",
+            "flutterMode": "profile",
+            "args": ["--web-port", "8080"]
+        },
+        {
+            "name": "Dalel (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "deviceId": "edge",
+            "flutterMode": "release",
+            "args": ["--web-port", "8080"]
+        }
+    ]
+}
