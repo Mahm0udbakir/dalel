@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_single_quotes
-class Assets {
-  Assets._();
+class MyAppAssets {
+  MyAppAssets._();
   
   static const String assetsImagesForgotPassword = "assets/images/ForgotPassword.jpeg";
 
