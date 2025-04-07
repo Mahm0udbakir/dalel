@@ -1,5 +1,5 @@
-import 'package:dalel/core/utils/assets.dart';
 import 'package:dalel/core/utils/text_styles.dart';
+import 'package:dalel/features/onBoarding/data/models/on_boarding_model.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/expanding_dots_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -13,20 +13,20 @@ class OnBoardingBodyWidget extends StatelessWidget {
       child: PageView.builder(
         physics: const BouncingScrollPhysics(),
         controller: _indicatorController,
-        itemCount: 3,
+        itemCount: onboardingData.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
               SizedBox(
                 width: 343,
                 height: 290,
-                child: Image.asset(MyAppAssets.assetsImagesFrame1),
+                child: Image.asset(onboardingData[index].image),
               ),
               const SizedBox(height: 24),
               ExpandingDotsIndicator(controller: _indicatorController),
               const SizedBox(height: 32),
               Text(
-                "Explore The history with Dalel in a smart way",
+                onboardingData[index].title,
                 style: AppTextStyles.poppins500size24
                     .copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
@@ -34,8 +34,8 @@ class OnBoardingBodyWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 16),
-              const Text(
-                "Using our app’s history libraries you can find many historical periods ",
+              Text(
+                onboardingData[index].description,
                 style: AppTextStyles.poppins300size16,
                 textAlign: TextAlign.center,
                 maxLines: 2,
