@@ -4,15 +4,16 @@ import 'package:dalel/features/onBoarding/presentation/widgets/expanding_dots_in
 import 'package:flutter/material.dart';
 
 class OnBoardingBodyWidget extends StatelessWidget {
-  OnBoardingBodyWidget({super.key});
-  final PageController _indicatorController = PageController();
+  const OnBoardingBodyWidget({super.key,required this.controller});
+  final PageController controller;
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 500,
       child: PageView.builder(
         physics: const BouncingScrollPhysics(),
-        controller: _indicatorController,
+        controller: controller,
         itemCount: onboardingData.length,
         itemBuilder: (context, index) {
           return Column(
@@ -23,7 +24,7 @@ class OnBoardingBodyWidget extends StatelessWidget {
                 child: Image.asset(onboardingData[index].image),
               ),
               const SizedBox(height: 24),
-              ExpandingDotsIndicator(controller: _indicatorController),
+              ExpandingDotsIndicator(controller: controller),
               const SizedBox(height: 32),
               Text(
                 onboardingData[index].title,
