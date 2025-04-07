@@ -1,7 +1,7 @@
-import 'package:dalel/core/utils/strings.dart';
-import 'package:dalel/core/widgets/cutom_button.dart';
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/cutom_nav_bar.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/onboarding_body.dart';
+import 'package:dalel/features/onBoarding/presentation/widgets/onboarding_buttons.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -13,7 +13,7 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController(initialPage: 0);
-
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,20 +24,20 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             physics: const BouncingScrollPhysics(),
             children: [
               const SizedBox(height: 40),
-              const CustomNavBar(),
+              CustomNavBar(
+                onTap: () => navigateWithOutBackButton(context, '/signup'),
+              ),
               OnBoardingBodyWidget(
+                onPageChanged: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
                 controller: _pageController,
               ),
               const SizedBox(height: 88),
-              CutomButton(
-                text: AppStrings.next,
-                onPressed: () {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 200),
-                    curve: Curves.easeIn,
-                  );
-                },
-              ),
+              GetOnBoardingButtons(
+                  currentIndex: currentIndex, pageController: _pageController),
               const SizedBox(height: 17),
             ],
           ),
@@ -46,3 +46,4 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 }
+

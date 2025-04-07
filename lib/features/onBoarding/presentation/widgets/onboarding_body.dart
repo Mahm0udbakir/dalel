@@ -4,9 +4,10 @@ import 'package:dalel/features/onBoarding/presentation/widgets/expanding_dots_in
 import 'package:flutter/material.dart';
 
 class OnBoardingBodyWidget extends StatelessWidget {
-  const OnBoardingBodyWidget({super.key,required this.controller});
+  const OnBoardingBodyWidget(
+      {super.key, required this.controller, this.onPageChanged});
   final PageController controller;
-  
+  final ValueChanged? onPageChanged;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -14,6 +15,7 @@ class OnBoardingBodyWidget extends StatelessWidget {
       child: PageView.builder(
         physics: const BouncingScrollPhysics(),
         controller: controller,
+        onPageChanged: onPageChanged,
         itemCount: onboardingData.length,
         itemBuilder: (context, index) {
           return Column(
