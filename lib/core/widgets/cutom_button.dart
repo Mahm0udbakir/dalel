@@ -12,7 +12,7 @@ class CutomButton extends StatelessWidget {
       width: double.infinity,
       height: 56  ,
       child: ElevatedButton(
-        onPressed: null,
+        onPressed: (){},
         style: ElevatedButton.styleFrom(
           backgroundColor: color ?? AppColors.primaryColor,
           shape: RoundedRectangleBorder(
