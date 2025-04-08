@@ -1,4 +1,7 @@
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigate.dart';
+import 'package:dalel/core/services/service_locator.dart';
+import 'package:dalel/core/utils/cache_keys.dart';
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +16,14 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    delayedNavigate(context);
+    bool isOnboardingCompleted =
+        getIt<CacheHelper>().getData(key: CacheKeys.onboardingCompleted) ??
+            false;
+    if (isOnboardingCompleted) {
+      delayedNavigate(context, '/signUp');
+    } else {
+      delayedNavigate(context, '/onBoarding');
+    }
   }
 
   @override
@@ -22,16 +32,15 @@ class _SplashViewState extends State<SplashView> {
       body: Center(
         child: Text(
           'Dalel',
-          style: AppTextStyles.pacifico400size64,
+          style: MyAppTextStyles.pacifico400size64,
         ),
       ),
     );
   }
 }
 
-void delayedNavigate(context) {
+void delayedNavigate(context, path) {
   Future.delayed(const Duration(seconds: 2), () {
-    navigateWithOutBackButton(context, '/onboarding');
+    navigateWithOutBackButton(context, path);
   });
 }
-    

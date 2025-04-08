@@ -1,4 +1,7 @@
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigate.dart';
+import 'package:dalel/core/services/service_locator.dart';
+import 'package:dalel/core/utils/cache_keys.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:dalel/core/widgets/cutom_button.dart';
@@ -15,20 +18,24 @@ class GetOnBoardingButtons extends StatelessWidget {
     if (currentIndex == onboardingData.length - 1) {
       return Column(
         children: [
-          CutomButton(
-            text: AppStrings.createAccount,
-            onPressed: () {
-              navigateWithOutBackButton(context, '/signup');
+          CustomButton(
+            text: MyAppStrings.createAccount,
+            onPressed: () async {
+              await getIt<CacheHelper>()
+                  .saveData(key: CacheKeys.onboardingCompleted, value: true);
+              navigateWithOutBackButton(context, '/signUp');
             },
           ),
           const SizedBox(height: 17),
           GestureDetector(
-            onTap: () {
-              navigateWithOutBackButton(context, '/signin');
+            onTap: () async {
+              await getIt<CacheHelper>()
+                  .saveData(key: CacheKeys.onboardingCompleted, value: true);
+              navigateWithOutBackButton(context, '/signIn');
             },
             child: Text(
-              AppStrings.loginNow,
-              style: AppTextStyles.poppins300size16.copyWith(
+              MyAppStrings.loginNow,
+              style: MyAppTextStyles.poppins300size16.copyWith(
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -36,8 +43,8 @@ class GetOnBoardingButtons extends StatelessWidget {
         ],
       );
     } else {
-      return CutomButton(
-        text: AppStrings.next,
+      return CustomButton(
+        text: MyAppStrings.next,
         onPressed: () {
           pageController.nextPage(
             duration: const Duration(milliseconds: 200),

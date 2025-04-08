@@ -1,4 +1,7 @@
+import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigate.dart';
+import 'package:dalel/core/services/service_locator.dart';
+import 'package:dalel/core/utils/cache_keys.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/cutom_nav_bar.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/onboarding_body.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/onboarding_buttons.dart';
@@ -14,6 +17,7 @@ class OnBoardingView extends StatefulWidget {
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController(initialPage: 0);
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,9 +28,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             physics: const BouncingScrollPhysics(),
             children: [
               const SizedBox(height: 40),
-              CustomNavBar(
-                onTap: () => navigateWithOutBackButton(context, '/signup'),
-              ),
+              CustomNavBar(onTap: () {
+                getIt<CacheHelper>()
+                    .saveData(key: CacheKeys.onboardingCompleted, value: true);
+                navigateWithOutBackButton(context, '/signUp');
+              }),
               OnBoardingBodyWidget(
                 onPageChanged: (index) {
                   setState(() {
@@ -46,4 +52,3 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 }
-

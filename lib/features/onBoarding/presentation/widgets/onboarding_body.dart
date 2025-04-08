@@ -30,7 +30,7 @@ class OnBoardingBodyWidget extends StatelessWidget {
               const SizedBox(height: 32),
               Text(
                 onboardingData[index].title,
-                style: AppTextStyles.poppins500size24
+                style: MyAppTextStyles.poppins500size24
                     .copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
                 maxLines: 2,
@@ -39,7 +39,7 @@ class OnBoardingBodyWidget extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 onboardingData[index].description,
-                style: AppTextStyles.poppins300size16,
+                style: MyAppTextStyles.poppins300size16,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

@@ -1,4 +1,4 @@
-abstract class AppStrings {
+abstract class MyAppStrings {
   //ToDo:All Strings
 
   static const String appName = "Dalel",
@@ -8,9 +8,9 @@ abstract class AppStrings {
       createAccount = "Create Account",
       loginNow = "Login Now",
       //!Auth Strings
-      welcome = "Welcome!",
+      welcome = "Welcome !",
       welcomeBack = "Welcome Back!",
-      fristName = "First Name",
+      firstName = "First Name",
       lastName = "Last Name",
       emailAddress = "Email Address",
       password = "Password",

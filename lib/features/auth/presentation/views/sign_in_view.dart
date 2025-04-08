@@ -10,11 +10,11 @@ class SignInView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sign In'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Sign In View'),
+            Text('Sign In View'),
           ],
         ),
       ),

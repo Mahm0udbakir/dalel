@@ -13,7 +13,7 @@ class ExpandingDotsIndicator extends StatelessWidget {
       controller: controller,
       count: 3,
       effect: ExpandingDotsEffect(
-        activeDotColor: AppColors.deepBrown,
+        activeDotColor: MyAppColors.deepBrown,
         dotHeight: 7,
         dotWidth: 10,
       ),

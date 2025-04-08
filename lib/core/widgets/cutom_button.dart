@@ -2,8 +2,8 @@ import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CutomButton extends StatelessWidget {
-  const CutomButton({super.key, this.color,  required this.text, this.onPressed});
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key, this.color,  required this.text, this.onPressed});
   final Color? color;
   final String text;
   final VoidCallback? onPressed;
@@ -15,15 +15,15 @@ class CutomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: color ?? AppColors.primaryColor,
+          backgroundColor: color ?? MyAppColors.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
         child: Text(
           text,
-          style: AppTextStyles.poppins500size24.copyWith(
-            color: AppColors.offWhite,
+          style: MyAppTextStyles.poppins500size24.copyWith(
+            color: MyAppColors.offWhite,
             fontSize: 18,
           ),
         ),

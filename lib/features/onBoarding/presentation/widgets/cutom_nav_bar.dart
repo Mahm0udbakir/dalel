@@ -14,8 +14,8 @@ class CustomNavBar extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Text(
-          AppStrings.skip,
-          style: AppTextStyles.poppins300size16.copyWith(
+          MyAppStrings.skip,
+          style: MyAppTextStyles.poppins300size16.copyWith(
             fontWeight: FontWeight.w400,
           ),
         ),
