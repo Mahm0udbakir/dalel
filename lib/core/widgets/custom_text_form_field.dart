@@ -3,14 +3,18 @@ import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, this.keyboardType, required this.text});
+  const CustomTextFormField({super.key, this.keyboardType, required this.text, this.onFieldSubmitted, this.onChanged});
   final TextInputType? keyboardType;
   final String text;
+  final ValueChanged? onFieldSubmitted;
+  final ValueChanged? onChanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmitted,
+        onChanged: onChanged,
         style: MyAppTextStyles.poppins300size16,
         cursorColor: MyAppColors.primaryColor,
         decoration: InputDecoration(

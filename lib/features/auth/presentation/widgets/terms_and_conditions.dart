@@ -39,7 +39,7 @@ class CustomCheckBox extends StatefulWidget {
 }
 
 class CustomCheckBoxState extends State<CustomCheckBox> {
-  bool value = false;
+  bool? value = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
       activeColor: MyAppColors.primaryColor,
       onChanged: (newValue) {
         setState(() {
-          value = newValue!;
+          value = newValue;
         });
       },
     );

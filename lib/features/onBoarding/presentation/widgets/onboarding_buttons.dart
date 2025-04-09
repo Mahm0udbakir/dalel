@@ -4,7 +4,7 @@ import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/cache_keys.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/utils/text_styles.dart';
-import 'package:dalel/core/widgets/cutom_button.dart';
+import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/features/onBoarding/data/models/on_boarding_model.dart';
 import 'package:flutter/material.dart';
 
@@ -21,17 +21,17 @@ class GetOnBoardingButtons extends StatelessWidget {
           CustomButton(
             text: MyAppStrings.createAccount,
             onPressed: () async {
+              navigateWithOutBackButton(context, '/signUp');
               await getIt<CacheHelper>()
                   .saveData(key: CacheKeys.onboardingCompleted, value: true);
-              navigateWithOutBackButton(context, '/signUp');
             },
           ),
           const SizedBox(height: 17),
           GestureDetector(
             onTap: () async {
+              navigateWithOutBackButton(context, '/signIn');
               await getIt<CacheHelper>()
                   .saveData(key: CacheKeys.onboardingCompleted, value: true);
-              navigateWithOutBackButton(context, '/signIn');
             },
             child: Text(
               MyAppStrings.loginNow,
