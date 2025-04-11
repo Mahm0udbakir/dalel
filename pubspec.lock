@@ -158,6 +158,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      sha256: d2696eed13732831414595b98863260e33e8882fc069ee80ec35d4ac9ddb0472
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -437,6 +445,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
+  top_snackbar_flutter:
+    dependency: "direct main"
+    description:
+      name: top_snackbar_flutter
+      sha256: f86ec477c60b716fac33a767f278fa2de275193b1d7a1f4fc4838b6088d7d338
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   typed_data:
     dependency: transitive
     description:
