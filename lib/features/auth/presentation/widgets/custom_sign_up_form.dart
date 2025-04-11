@@ -41,6 +41,7 @@ class CustomSignUpForm extends StatelessWidget {
               ),
               CustomTextFormField(
                 text: MyAppStrings.password,
+                isPassword: true,
                 onFieldSubmitted: (password) {
                   myAuthCubit.password = password;
                 },

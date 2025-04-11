@@ -11,6 +11,7 @@ class AuthCubit extends Cubit<AuthState> {
   String? email;
   String? password;
   bool termsAndConditionsChecked = false;
+  bool passwordVisible = false;
 
   final GlobalKey<FormState> authFormKey = GlobalKey<FormState>();
 
@@ -38,5 +39,10 @@ class AuthCubit extends Cubit<AuthState> {
   termsAndConditionsCheck({required checkedOrNot}) {
     termsAndConditionsChecked = checkedOrNot;
     emit(TermsAndConditionsCheckedState());
+  }
+
+  togglePasswordVisibility() {
+    passwordVisible = !passwordVisible;
+    emit(PasswordVisiblityChangedState());
   }
 }

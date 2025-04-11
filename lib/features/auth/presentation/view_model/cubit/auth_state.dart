@@ -12,3 +12,5 @@ final class SignUpErrorState extends AuthState {
 }
 
 final class TermsAndConditionsCheckedState extends AuthState {}
+
+final class PasswordVisiblityChangedState extends AuthState {}
