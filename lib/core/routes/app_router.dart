@@ -37,10 +37,7 @@ class AppRouter {
       ),
      GoRoute(
         path: '/home',
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt<AuthCubit>(),
-          child: const HomeView(),
-        ),
+        builder: (context, state) => const HomeView(),
       ),
     ],
     // Optional: Error page for undefined routes
