@@ -3,7 +3,12 @@ import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, this.keyboardType, required this.text, this.onFieldSubmitted, this.onChanged});
+  const CustomTextFormField(
+      {super.key,
+      this.keyboardType,
+      required this.text,
+      this.onFieldSubmitted,
+      this.onChanged});
   final TextInputType? keyboardType;
   final String text;
   final ValueChanged? onFieldSubmitted;
@@ -26,6 +31,12 @@ class CustomTextFormField extends StatelessWidget {
           focusedBorder: outlineInputBorder,
         ),
         keyboardType: keyboardType,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter your $text';
+          }
+          return null;
+        },
       ),
     );
   }

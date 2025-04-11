@@ -10,3 +10,5 @@ final class SignUpErrorState extends AuthState {
   final String errorMessage;
   SignUpErrorState({required this.errorMessage});
 }
+
+final class TermsAndConditionsCheckedState extends AuthState {}

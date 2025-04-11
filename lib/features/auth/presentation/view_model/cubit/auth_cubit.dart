@@ -1,21 +1,25 @@
 import 'package:dalel/features/auth/presentation/view_model/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
-  late String firstName;
-  late String lastName;
-  late String email;
-  late String password;
+
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? password;
+  bool termsAndConditionsChecked = false;
+
+  final GlobalKey<FormState> authFormKey = GlobalKey<FormState>();
 
   signIUpWithEmailAndPassword() async {
     try {
       emit(SignUpLoadingState());
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email!,
+        password: password!,
       );
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
@@ -29,5 +33,10 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(SignUpErrorState(errorMessage: e.toString()));
     }
+  }
+
+  termsAndConditionsCheck({required checkedOrNot}) {
+    termsAndConditionsChecked = checkedOrNot;
+    emit(TermsAndConditionsCheckedState());
   }
 }

@@ -1,7 +1,9 @@
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/utils/text_styles.dart';
+import 'package:dalel/features/auth/presentation/view_model/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TermsAndConditions extends StatelessWidget {
   const TermsAndConditions({super.key});
@@ -51,6 +53,8 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
       activeColor: MyAppColors.primaryColor,
       onChanged: (newValue) {
         setState(() {
+          BlocProvider.of<AuthCubit>(context)
+              .termsAndConditionsCheck(checkedOrNot: newValue);
           value = newValue;
         });
       },
