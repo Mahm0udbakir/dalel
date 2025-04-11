@@ -59,8 +59,8 @@ class CustomSignUpForm extends StatelessWidget {
               const TermsAndConditions(),
               const SizedBox(height: 88),
               state is SignUpLoadingState
-                  ? const SpinKitCubeGrid(
-                      color: Colors.white,
+                  ? SpinKitCubeGrid(
+                      color: MyAppColors.primaryColor,
                       size: 50.0,
                     )
                   : CustomButton(

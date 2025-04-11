@@ -31,11 +31,11 @@ class AppRouter {
       GoRoute(
         path: '/signUp',
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt<AuthCubit>(),
+          create: (context) => AuthCubit(),
           child: const SignUpView(),
         ),
       ),
-     GoRoute(
+      GoRoute(
         path: '/home',
         builder: (context, state) => const HomeView(),
       ),
@@ -48,4 +48,3 @@ class AppRouter {
     ),
   );
 }
- 
