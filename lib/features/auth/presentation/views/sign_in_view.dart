@@ -25,7 +25,7 @@ class SignInView extends StatelessWidget {
               text1: MyAppStrings.dontHaveAnAccount,
               text2: MyAppStrings.signUp,
               onTap: () {
-                navigateWithOutBackButton(context, '/signIn');
+                navigateWithOutBackButton(context, '/signUp');
               },
             ),
           ),

@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthStates> {
   final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
 
-  signIUpWithEmailAndPassword() async {
+  signUpWithEmailAndPassword() async {
     try {
       emit(SignUpLoadingState());
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -34,6 +34,43 @@ class AuthCubit extends Cubit<AuthStates> {
       }
     } catch (e) {
       emit(SignUpErrorState(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      emit(SignInLoadingState());
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email!, password: password!);
+      emit(SignInSuccessState());
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'Wrong password provided for that user.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'The email address is invalid.';
+          break;
+        case 'user-disabled':
+          errorMessage = 'This user account has been disabled.';
+          break;
+        case 'too-many-requests':
+          errorMessage = 'Too many attempts. Please try again later.';
+          break;
+        case 'invalid-credential':
+          errorMessage =
+              'Invalid credentials. Please check your email and password.';
+          break;
+        default:
+          errorMessage = 'Sign-in failed: ${e.message ?? e.code}';
+      }
+      emit(SignInErrorState(errorMessage: errorMessage));
+    } catch (e) {
+      emit(SignInErrorState(errorMessage: 'An unexpected error occurred: $e'));
     }
   }
 

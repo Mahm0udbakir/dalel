@@ -1,3 +1,5 @@
+import 'package:dalel/core/functions/custom_snackbar.dart';
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
@@ -16,7 +18,14 @@ class CustomSignInForm extends StatelessWidget {
   Widget build(BuildContext context) {
     var myAuthCubit = BlocProvider.of<AuthCubit>(context);
     return BlocConsumer<AuthCubit, AuthStates>(
-      listener: (BuildContext context, state) {},
+      listener: (BuildContext context, state) {
+        if (state is SignInErrorState) {
+          errorSnackBar(context, state);
+        } else if (state is SignInSuccessState) {
+          successSnackBar(context);
+          navigateWithOutBackButton(context, '/home');
+        }
+      },
       builder: (BuildContext context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -48,7 +57,9 @@ class CustomSignInForm extends StatelessWidget {
                         text: MyAppStrings.signIn,
                         onPressed: () {
                           if (myAuthCubit.signInFormKey.currentState!
-                              .validate()) {}
+                              .validate()) {
+                            myAuthCubit.signInWithEmailAndPassword();
+                          }
                         },
                       ),
               ],

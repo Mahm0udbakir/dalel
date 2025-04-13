@@ -12,7 +12,7 @@ successSnackBar(BuildContext context) {
   );
 }
 
-errorSnackBar(BuildContext context, SignUpErrorState state) {
+errorSnackBar(BuildContext context, ErrorState state) {
   showTopSnackBar(
     Overlay.of(context),
     CustomSnackBar.error(
