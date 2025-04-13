@@ -12,28 +12,25 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: CustomScrollView(
-          slivers: [
-            const SliverToBoxAdapter(child: CustomSignInBanner()),
-            const SliverToBoxAdapter(child: SizedBox(height: 32)),
-            const SliverToBoxAdapter(child: WelcomeTextWidget(text: MyAppStrings.welcomeBack,)),
-            const SliverToBoxAdapter(child: SizedBox(height: 48)),
-            const SliverToBoxAdapter(child: CustomSignInForm()),
-            const SliverToBoxAdapter(child: SizedBox(height: 16)),
-            SliverToBoxAdapter(
-              child: HaveAnAccount(
-                text1: MyAppStrings.dontHaveAnAccount,
-                text2: MyAppStrings.signUp,
-                onTap: () {
-                  navigateWithOutBackButton(context, '/signIn');
-                },
-              ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(child: CustomSignInBanner()),
+          const SliverToBoxAdapter(child: SizedBox(height: 32)),
+          const SliverToBoxAdapter(child: WelcomeTextWidget(text: MyAppStrings.welcomeBack,)),
+          const SliverToBoxAdapter(child: SizedBox(height: 32)),
+          const SliverToBoxAdapter(child: CustomSignInForm()),
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          SliverToBoxAdapter(
+            child: HaveAnAccount(
+              text1: MyAppStrings.dontHaveAnAccount,
+              text2: MyAppStrings.signUp,
+              onTap: () {
+                navigateWithOutBackButton(context, '/signIn');
+              },
             ),
-            const SliverToBoxAdapter(child: SizedBox(height: 17)),
-          ],
-        ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 17)),
+        ],
       ),
     );
   }

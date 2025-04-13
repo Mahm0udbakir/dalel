@@ -18,38 +18,41 @@ class CustomSignInForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
-        return Form(
-          key: myAuthCubit.signInFormKey,
-          child: Column(
-            children: [
-              CustomTextFormField(
-                text: MyAppStrings.emailAddress,
-                onChanged: (email) {
-                  myAuthCubit.email = email;
-                },
-              ),
-              CustomTextFormField(
-                text: MyAppStrings.password,
-                isPassword: true,
-                onChanged: (password) {
-                  myAuthCubit.password = password;
-                },
-              ),
-              const CustomForgotPassword(),
-              const SizedBox(height: 102),
-              state is SignInLoadingState
-                  ? SpinKitCubeGrid(
-                      color: MyAppColors.primaryColor,
-                      size: 35,
-                    )
-                  : CustomButton(
-                      text: MyAppStrings.signIn,
-                      onPressed: () {
-                        if (myAuthCubit.signInFormKey.currentState!
-                            .validate()) {}
-                      },
-                    ),
-            ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Form(
+            key: myAuthCubit.signInFormKey,
+            child: Column(
+              children: [
+                CustomTextFormField(
+                  text: MyAppStrings.emailAddress,
+                  onChanged: (email) {
+                    myAuthCubit.email = email;
+                  },
+                ),
+                CustomTextFormField(
+                  text: MyAppStrings.password,
+                  isPassword: true,
+                  onChanged: (password) {
+                    myAuthCubit.password = password;
+                  },
+                ),
+                const CustomForgotPassword(),
+                const SizedBox(height: 102),
+                state is SignInLoadingState
+                    ? SpinKitCubeGrid(
+                        color: MyAppColors.primaryColor,
+                        size: 35,
+                      )
+                    : CustomButton(
+                        text: MyAppStrings.signIn,
+                        onPressed: () {
+                          if (myAuthCubit.signInFormKey.currentState!
+                              .validate()) {}
+                        },
+                      ),
+              ],
+            ),
           ),
         );
       },

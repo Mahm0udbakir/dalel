@@ -42,6 +42,6 @@ abstract class MyAppTextStyles {
     fontFamily: 'Saira',
     fontSize: 32,
     fontWeight: FontWeight.w700,
-    color: Colors.black,
+    color: Colors.white,
   );
 }
