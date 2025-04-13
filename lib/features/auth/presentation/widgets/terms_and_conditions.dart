@@ -54,7 +54,7 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
       onChanged: (newValue) {
         setState(() {
           BlocProvider.of<AuthCubit>(context)
-              .termsAndConditionsCheck(checkedOrNot: newValue);
+              .termsAndConditionsCheck(value: newValue);
           value = newValue;
         });
       },

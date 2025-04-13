@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class CustomSignUpForm extends StatelessWidget {
-  const CustomSignUpForm({super.key});
+class CustomSignInForm extends StatelessWidget {
+  const CustomSignInForm({super.key});
 
   @override
   Widget build(BuildContext context) {

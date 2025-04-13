@@ -36,8 +36,8 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  termsAndConditionsCheck({required checkedOrNot}) {
-    termsAndConditionsChecked = checkedOrNot;
+  termsAndConditionsCheck({required value}) {
+    termsAndConditionsChecked = value;
     emit(TermsAndConditionsCheckedState());
   }
 
