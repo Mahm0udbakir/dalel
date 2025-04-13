@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-successSnackBar(BuildContext context,SuccessState state) {
+successSnackBar(BuildContext context, SuccessState state) {
   showTopSnackBar(
     Overlay.of(context),
     CustomSnackBar.success(
       message: state.successMessage,
+    ),
+  );
+}
+
+infoSnackBar(BuildContext context, String message) {
+  showTopSnackBar(
+    Overlay.of(context),
+    CustomSnackBar.info(
+      message: message,
     ),
   );
 }
