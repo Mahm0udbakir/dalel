@@ -1,13 +1,10 @@
-import 'package:dalel/core/functions/custom_snackbar.dart';
-import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/strings.dart';
-import 'package:dalel/core/utils/text_styles.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
 import 'package:dalel/core/widgets/custom_text_form_field.dart';
 import 'package:dalel/features/auth/presentation/view_model/cubit/auth_cubit.dart';
 import 'package:dalel/features/auth/presentation/view_model/cubit/auth_state.dart';
-import 'package:dalel/features/auth/presentation/views/forget_password_view.dart';
+import 'package:dalel/features/auth/presentation/widgets/custom_forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -38,8 +35,8 @@ class CustomSignInForm extends StatelessWidget {
                   myAuthCubit.password = password;
                 },
               ),
-              const ForgotPasswordView(),
-              const SizedBox(height: 88),
+              const CustomForgotPassword(),
+              const SizedBox(height: 102),
               state is SignInLoadingState
                   ? SpinKitCubeGrid(
                       color: MyAppColors.primaryColor,
@@ -56,26 +53,6 @@ class CustomSignInForm extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class CustomForgetPassword extends StatelessWidget {
-  const CustomForgetPassword({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () {
-          navigateWithBackButton(context, '/forgetPassword');
-        },
-        child: Text(
-          MyAppStrings.forgotPassword,
-          style: MyAppTextStyles.poppins600size28.copyWith(fontSize: 12),
-        ),
-      ),
     );
   }
 }

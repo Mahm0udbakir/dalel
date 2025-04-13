@@ -28,8 +28,8 @@ class SignInView extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
             SliverToBoxAdapter(
               child: HaveAnAccount(
-                text1: MyAppStrings.alreadyHaveAnAccount,
-                text2: MyAppStrings.signIn,
+                text1: MyAppStrings.dontHaveAnAccount,
+                text2: MyAppStrings.signUp,
                 onTap: () {
                   navigateWithOutBackButton(context, '/signIn');
                 },
