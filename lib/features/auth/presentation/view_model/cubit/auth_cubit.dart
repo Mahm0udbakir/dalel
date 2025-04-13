@@ -26,7 +26,7 @@ class AuthCubit extends Cubit<AuthStates> {
       verifyEmail();
       emit(SignUpSuccessState(
           successMessage:
-              'Account created successfully!, please verify your email'));
+              'Account created successfully!, Please verify'));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(SignUpErrorState(

@@ -28,7 +28,7 @@ class CustomSignInForm extends StatelessWidget {
             navigateWithOutBackButton(context, '/home');
           } else {
             infoSnackBar(context,
-                "This email is not verified yet, please check your email and verify it.");
+                "This email is not verified yet, please check your email.");
           }
         }
       },

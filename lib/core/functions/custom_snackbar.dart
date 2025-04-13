@@ -16,6 +16,7 @@ infoSnackBar(BuildContext context, String message) {
   showTopSnackBar(
     Overlay.of(context),
     CustomSnackBar.info(
+      backgroundColor: Colors.yellow,
       message: message,
     ),
   );
