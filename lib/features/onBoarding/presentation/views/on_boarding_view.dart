@@ -31,7 +31,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               CustomNavBar(onTap: () {
                 getIt<CacheHelper>()
                     .saveData(key: CacheKeys.onboardingCompleted, value: true);
-                navigateWithOutBackButton(context, '/signUp');
+                navigateWithOutBackButton(context, '/signIn');
               }),
               OnBoardingBodyWidget(
                 onPageChanged: (index) {
