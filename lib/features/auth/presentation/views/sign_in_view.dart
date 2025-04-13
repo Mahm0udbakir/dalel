@@ -3,6 +3,7 @@ import 'package:dalel/core/utils/assets.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/utils/text_styles.dart';
+import 'package:dalel/features/auth/presentation/widgets/custom_sign_in_form.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_sign_up_form.dart';
 import 'package:dalel/features/auth/presentation/widgets/have_an_account.dart';
 import 'package:dalel/features/auth/presentation/widgets/welcome_text_widget.dart';
@@ -19,11 +20,11 @@ class SignInView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(child: SizedBox(height: 120)),
-            const SliverToBoxAdapter(child: SizedBox(height: 120)),
-            const SliverToBoxAdapter(child: WelcomeTextWidget()),
-            const SliverToBoxAdapter(child: SizedBox(height: 24)),
-            const SliverToBoxAdapter(child: CustomSignUpForm()),
+            const SliverToBoxAdapter(child: CustomSignInBanner()),
+            const SliverToBoxAdapter(child: SizedBox(height: 32)),
+            const SliverToBoxAdapter(child: WelcomeTextWidget(text: MyAppStrings.welcomeBack,)),
+            const SliverToBoxAdapter(child: SizedBox(height: 48)),
+            const SliverToBoxAdapter(child: CustomSignInForm()),
             const SliverToBoxAdapter(child: SizedBox(height: 16)),
             SliverToBoxAdapter(
               child: HaveAnAccount(

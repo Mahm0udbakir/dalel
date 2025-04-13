@@ -28,7 +28,7 @@ class CustomSignUpForm extends StatelessWidget {
       },
       builder: (BuildContext context, state) {
         return Form(
-          key: myAuthCubit.authFormKey,
+          key: myAuthCubit.signUpFormKey,
           child: Column(
             children: [
               CustomTextFormField(
@@ -70,7 +70,7 @@ class CustomSignUpForm extends StatelessWidget {
                           : MyAppColors.grey,
                       onPressed: () {
                         if (myAuthCubit.termsAndConditionsChecked) {
-                          if (myAuthCubit.authFormKey.currentState!
+                          if (myAuthCubit.signUpFormKey.currentState!
                               .validate()) {
                             myAuthCubit.signIUpWithEmailAndPassword();
                           }

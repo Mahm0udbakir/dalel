@@ -9,7 +9,7 @@ abstract class MyAppStrings {
       loginNow = "Login Now",
       //!Auth Strings
       welcome = "Welcome !",
-      welcomeBack = "Welcome Back!",
+      welcomeBack = "Welcome Back !",
       firstName = "First Name",
       lastName = "Last Name",
       emailAddress = "Email Address",

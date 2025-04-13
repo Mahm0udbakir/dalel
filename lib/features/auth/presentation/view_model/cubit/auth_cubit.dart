@@ -13,7 +13,8 @@ class AuthCubit extends Cubit<AuthStates> {
   bool termsAndConditionsChecked = false;
   bool passwordVisible = false;
 
-  final GlobalKey<FormState> authFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
 
   signIUpWithEmailAndPassword() async {
     try {
