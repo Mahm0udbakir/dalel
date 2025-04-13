@@ -22,7 +22,7 @@ class CustomSignInForm extends StatelessWidget {
         if (state is SignInErrorState) {
           errorSnackBar(context, state);
         } else if (state is SignInSuccessState) {
-          successSnackBar(context);
+          successSnackBar(context, state);
           navigateWithOutBackButton(context, '/home');
         }
       },

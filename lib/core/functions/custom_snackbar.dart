@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-successSnackBar(BuildContext context) {
+successSnackBar(BuildContext context,SuccessState state) {
   showTopSnackBar(
     Overlay.of(context),
-    const CustomSnackBar.success(
-      message: "Account created successfully",
+    CustomSnackBar.success(
+      message: state.successMessage,
     ),
   );
 }

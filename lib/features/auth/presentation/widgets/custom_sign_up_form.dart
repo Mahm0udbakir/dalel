@@ -20,10 +20,10 @@ class CustomSignUpForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthStates>(
       listener: (BuildContext context, state) {
         if (state is SignUpErrorState) {
-          // errorSnackBar(context, state);
+          errorSnackBar(context, state);
         } else if (state is SignUpSuccessState) {
-          successSnackBar(context);
-          navigateWithOutBackButton(context, '/home');
+          successSnackBar(context, state);
+          navigateWithOutBackButton(context, '/signIn');
         }
       },
       builder: (BuildContext context, state) {

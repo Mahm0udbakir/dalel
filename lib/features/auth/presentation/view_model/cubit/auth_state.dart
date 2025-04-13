@@ -2,11 +2,23 @@ class AuthStates {}
 
 final class AuthInitial extends AuthStates {}
 
+// Main States
+
+abstract class SuccessState extends AuthStates {
+  String get successMessage;
+}
+
 abstract class ErrorState extends AuthStates {
   String get errorMessage;
 }
 
-final class SignUpSuccessState extends AuthStates {}
+//! Sign Up States
+
+final class SignUpSuccessState extends SuccessState {
+  @override
+  final String successMessage;
+  SignUpSuccessState({required this.successMessage});
+}
 
 final class SignUpLoadingState extends AuthStates {}
 
@@ -16,7 +28,13 @@ final class SignUpErrorState extends ErrorState {
   SignUpErrorState({required this.errorMessage});
 }
 
-final class SignInSuccessState extends AuthStates {}
+//! Sign In States
+
+final class SignInSuccessState extends SuccessState {
+  @override
+  final String successMessage;
+  SignInSuccessState({required this.successMessage});
+}
 
 final class SignInLoadingState extends AuthStates {}
 
@@ -25,6 +43,8 @@ final class SignInErrorState extends ErrorState {
   final String errorMessage;
   SignInErrorState({required this.errorMessage});
 }
+
+//! Other States
 
 final class TermsAndConditionsCheckedState extends AuthStates {}
 
