@@ -1,6 +1,6 @@
 import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/features/auth/presentation/view_model/cubit/auth_cubit.dart';
-import 'package:dalel/features/auth/presentation/views/forget_password_view.dart';
+import 'package:dalel/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_up_view.dart';
 import 'package:dalel/features/home/presentation/views/home_view.dart';

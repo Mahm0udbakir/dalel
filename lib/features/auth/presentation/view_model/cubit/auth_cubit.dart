@@ -15,6 +15,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
   final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
 
   signUpWithEmailAndPassword() async {
     try {

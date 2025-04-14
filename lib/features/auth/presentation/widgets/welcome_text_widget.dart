@@ -1,8 +1,8 @@
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class WelcomeTextWidget extends StatelessWidget {
-  const WelcomeTextWidget({super.key, required this.text});
+class CustomTextWidget extends StatelessWidget {
+  const CustomTextWidget({super.key, required this.text});
   final String text;
   @override
   Widget build(BuildContext context) {
