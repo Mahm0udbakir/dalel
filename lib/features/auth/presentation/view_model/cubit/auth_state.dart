@@ -44,6 +44,23 @@ final class SignInErrorState extends ErrorState {
   SignInErrorState({required this.errorMessage});
 }
 
+
+//! Forgot Password States
+
+final class ForgotPasswordSuccessState extends SuccessState {
+  @override
+  final String successMessage;
+  ForgotPasswordSuccessState({required this.successMessage});
+}
+
+final class ForgotPasswordLoadingState extends AuthStates {}
+
+final class ForgotPasswordErrorState extends ErrorState {
+  @override
+  final String errorMessage;
+  ForgotPasswordErrorState({required this.errorMessage});
+}
+
 //! Other States
 
 final class TermsAndConditionsCheckedState extends AuthStates {}

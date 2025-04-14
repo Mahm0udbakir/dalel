@@ -1,3 +1,5 @@
+import 'package:dalel/core/functions/custom_snackbar.dart';
+import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/widgets/custom_button.dart';
@@ -15,7 +17,14 @@ class CustomForgotPasswordForm extends StatelessWidget {
   Widget build(BuildContext context) {
     var myAuthCubit = BlocProvider.of<AuthCubit>(context);
     return BlocConsumer<AuthCubit, AuthStates>(
-      listener: (BuildContext context, state) {},
+      listener: (BuildContext context, state) {
+        if (state is ForgotPasswordErrorState) {
+          errorSnackBar(context, state);
+        } else if (state is ForgotPasswordSuccessState) {
+          successSnackBar(context, state);
+          navigateWithOutBackButton(context, '/signIn');
+        }
+      },
       builder: (BuildContext context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -37,7 +46,12 @@ class CustomForgotPasswordForm extends StatelessWidget {
                       )
                     : CustomButton(
                         text: MyAppStrings.sendResetPasswordLink,
-                        onPressed: () {},
+                        onPressed: () {
+                          if (myAuthCubit.forgotPasswordFormKey.currentState!
+                              .validate()) {
+                            myAuthCubit.resetPasswordWithLink();
+                          }
+                        },
                       ),
               ],
             ),

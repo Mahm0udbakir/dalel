@@ -2,6 +2,7 @@ class MyAppAssets {
   MyAppAssets._();
 
   static const String assetsImagesForgotPassword = "images/ForgotPassword.jpeg";
+  static const String assetsImagesForgotPassword2 = "images/ForgotPassword2.png";
 
   static const String assetsImagesFrame1 = "images/Frame1.png";
 

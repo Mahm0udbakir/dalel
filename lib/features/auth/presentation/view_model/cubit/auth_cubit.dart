@@ -26,8 +26,7 @@ class AuthCubit extends Cubit<AuthStates> {
       );
       verifyEmail();
       emit(SignUpSuccessState(
-          successMessage:
-              'Account created successfully!, Please verify'));
+          successMessage: 'Account created successfully!, Please verify'));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(SignUpErrorState(
@@ -43,7 +42,7 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  Future<void> signInWithEmailAndPassword() async {
+  signInWithEmailAndPassword() async {
     try {
       emit(SignInLoadingState());
       await FirebaseAuth.instance
@@ -92,5 +91,18 @@ class AuthCubit extends Cubit<AuthStates> {
   togglePasswordVisibility() {
     passwordVisible = !passwordVisible;
     emit(PasswordVisiblityChangedState());
+  }
+
+  resetPasswordWithLink(){
+    try {
+      emit(ForgotPasswordLoadingState());
+      FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
+      emit(ForgotPasswordSuccessState(
+          successMessage: 'Password reset link sent to your email.'));
+    } on FirebaseAuthException catch (e) {
+      emit(ForgotPasswordErrorState(errorMessage: e.code));
+    } catch (e) {
+      emit(ForgotPasswordErrorState(errorMessage: e.toString()));
+    }
   }
 }

@@ -1,7 +1,7 @@
-import 'package:dalel/core/utils/assets.dart';
 import 'package:dalel/core/utils/strings.dart';
-import 'package:dalel/core/utils/text_styles.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_forgot_password_form.dart';
+import 'package:dalel/features/auth/presentation/widgets/forgot_password_image.dart';
+import 'package:dalel/features/auth/presentation/widgets/forgot_password_subtitle.dart';
 import 'package:dalel/features/auth/presentation/widgets/welcome_text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -24,37 +24,6 @@ class ForgotPasswordView extends StatelessWidget {
           SliverToBoxAdapter(child: CustomForgotPasswordForm()),
           SliverToBoxAdapter(child: SizedBox(height: 17)),
         ],
-      ),
-    );
-  }
-}
-
-class ForgotPasswordImage extends StatelessWidget {
-  const ForgotPasswordImage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 253,
-      width: 253,
-      child: Image(
-        image: AssetImage(MyAppAssets.assetsImagesForgotPassword),
-      ),
-    );
-  }
-}
-
-class ForgotPasswordSubTitle extends StatelessWidget {
-  const ForgotPasswordSubTitle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 34),
-      child: Text(
-        'Enter your registered email below to receive password reset instruction',
-        style: MyAppTextStyles.poppins400size16,
-        textAlign: TextAlign.center,
       ),
     );
   }
