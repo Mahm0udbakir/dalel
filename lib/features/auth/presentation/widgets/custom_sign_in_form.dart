@@ -29,6 +29,7 @@ class CustomSignInForm extends StatelessWidget {
           } else {
             infoSnackBar(context,
                 "This email is not verified yet, please check your email.");
+            FirebaseAuth.instance.signOut();
           }
         }
       },

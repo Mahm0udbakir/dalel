@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/features/auth/presentation/view_model/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,9 @@ class AuthCubit extends Cubit<AuthStates> {
         email: email!,
         password: password!,
       );
-      verifyEmail();
+      await addUser();
+      await verifyEmail();
+      await FirebaseAuth.instance.signOut();
       emit(SignUpSuccessState(
           successMessage: 'Account created successfully!, Please verify'));
     } on FirebaseAuthException catch (e) {
@@ -93,7 +96,7 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(PasswordVisiblityChangedState());
   }
 
-  resetPasswordWithLink(){
+  resetPasswordWithLink() {
     try {
       emit(ForgotPasswordLoadingState());
       FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
@@ -104,5 +107,14 @@ class AuthCubit extends Cubit<AuthStates> {
     } catch (e) {
       emit(ForgotPasswordErrorState(errorMessage: e.toString()));
     }
+  }
+
+  addUser() {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    users.add({
+      'email': email,
+      'firstName': firstName,
+      'lastName': lastName,
+    });
   }
 }
