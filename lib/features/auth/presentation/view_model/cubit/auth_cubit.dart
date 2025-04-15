@@ -31,17 +31,21 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(SignUpSuccessState(
           successMessage: 'Account created successfully!, Please verify'));
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        emit(SignUpErrorState(
-            errorMessage: 'The password provided is too weak.'));
-      } else if (e.code == 'email-already-in-use') {
-        emit(SignUpErrorState(
-            errorMessage: 'The account already exists for that email.'));
-      } else {
-        emit(SignUpErrorState(errorMessage: e.code));
-      }
+      _signUpHandleExceptions(e);
     } catch (e) {
       emit(SignUpErrorState(errorMessage: e.toString()));
+    }
+  }
+
+  void _signUpHandleExceptions(FirebaseAuthException e) {
+    if (e.code == 'weak-password') {
+      emit(SignUpErrorState(
+          errorMessage: 'The password provided is too weak.'));
+    } else if (e.code == 'email-already-in-use') {
+      emit(SignUpErrorState(
+          errorMessage: 'The account already exists for that email.'));
+    } else {
+      emit(SignUpErrorState(errorMessage: e.code));
     }
   }
 
@@ -52,34 +56,38 @@ class AuthCubit extends Cubit<AuthStates> {
           .signInWithEmailAndPassword(email: email!, password: password!);
       emit(SignInSuccessState(successMessage: 'Sign-in successful!'));
     } on FirebaseAuthException catch (e) {
-      String errorMessage;
-      switch (e.code) {
-        case 'user-not-found':
-          errorMessage = 'No user found for that email.';
-          break;
-        case 'wrong-password':
-          errorMessage = 'Wrong password provided for that user.';
-          break;
-        case 'invalid-email':
-          errorMessage = 'The email address is invalid.';
-          break;
-        case 'user-disabled':
-          errorMessage = 'This user account has been disabled.';
-          break;
-        case 'too-many-requests':
-          errorMessage = 'Too many attempts. Please try again later.';
-          break;
-        case 'invalid-credential':
-          errorMessage =
-              'Invalid credentials. Please check your email and password.';
-          break;
-        default:
-          errorMessage = 'Sign-in failed: ${e.message ?? e.code}';
-      }
-      emit(SignInErrorState(errorMessage: errorMessage));
+      _signInHandleExceptions(e);
     } catch (e) {
       emit(SignInErrorState(errorMessage: 'An unexpected error occurred: $e'));
     }
+  }
+
+  void _signInHandleExceptions(FirebaseAuthException e) {
+        String errorMessage;
+    switch (e.code) {
+      case 'user-not-found':
+        errorMessage = 'No user found for that email.';
+        break;
+      case 'wrong-password':
+        errorMessage = 'Wrong password provided for that user.';
+        break;
+      case 'invalid-email':
+        errorMessage = 'The email address is invalid.';
+        break;
+      case 'user-disabled':
+        errorMessage = 'This user account has been disabled.';
+        break;
+      case 'too-many-requests':
+        errorMessage = 'Too many attempts. Please try again later.';
+        break;
+      case 'invalid-credential':
+        errorMessage =
+            'Invalid credentials. Please check your email and password.';
+        break;
+      default:
+        errorMessage = 'Sign-in failed: ${e.message ?? e.code}';
+    }
+    emit(SignInErrorState(errorMessage: errorMessage));
   }
 
   Future<void> verifyEmail() async {
