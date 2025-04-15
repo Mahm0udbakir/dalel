@@ -20,7 +20,7 @@ class MyAppAssets {
 
   static const String assetsImagesSuccess = "images/Success.png";
 
-  static const String assetsImagesVector1 = "images/Vector1.svg";
+  static const String assetsImagesVector1 = "images/Vector1.png";
 
-  static const String assetsImagesVector2 = "images/Vector2.svg";
+  static const String assetsImagesVector2 = "images/Vector2.png";
 }

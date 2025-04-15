@@ -3,7 +3,6 @@ import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CustomSignInBanner extends StatelessWidget {
   const CustomSignInBanner({super.key});
@@ -23,9 +22,9 @@ class CustomSignInBanner extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SvgPicture.asset(MyAppAssets.assetsImagesVector1),
+              Image.asset(MyAppAssets.assetsImagesVector1),
               const SizedBox(width: 20),
-              SvgPicture.asset(MyAppAssets.assetsImagesVector2),
+              Image.asset(MyAppAssets.assetsImagesVector2),
             ],
           ),
         ],
