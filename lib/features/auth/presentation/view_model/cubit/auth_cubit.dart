@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthStates> {
   final GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
 
-  signUpWithEmailAndPassword() async {
+  Future<void> signUpWithEmailAndPassword() async {
     try {
       emit(SignUpLoadingState());
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -45,7 +45,7 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  signInWithEmailAndPassword() async {
+  Future<void> signInWithEmailAndPassword() async {
     try {
       emit(SignInLoadingState());
       await FirebaseAuth.instance
@@ -82,24 +82,24 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  verifyEmail() {
-    FirebaseAuth.instance.currentUser?.sendEmailVerification();
+  Future<void> verifyEmail() async {
+    await FirebaseAuth.instance.currentUser?.sendEmailVerification();
   }
 
-  termsAndConditionsCheck({required value}) {
+  void termsAndConditionsCheck({required value}) {
     termsAndConditionsChecked = value;
     emit(TermsAndConditionsCheckedState());
   }
 
-  togglePasswordVisibility() {
+  void togglePasswordVisibility() {
     passwordVisible = !passwordVisible;
     emit(PasswordVisiblityChangedState());
   }
 
-  resetPasswordWithLink() {
+  Future<void> resetPasswordWithLink() async {
     try {
       emit(ForgotPasswordLoadingState());
-      FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email!);
       emit(ForgotPasswordSuccessState(
           successMessage: 'Password reset link sent to your email.'));
     } on FirebaseAuthException catch (e) {
@@ -109,9 +109,9 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  addUser() {
+  Future<void> addUser() async {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    users.add({
+    await users.add({
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
