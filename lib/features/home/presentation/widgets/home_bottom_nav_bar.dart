@@ -23,6 +23,13 @@ class HomeBottomNavBar extends StatelessWidget {
       hideNavigationBarWhenKeyboardAppears: true,
       backgroundColor: MyAppColors.primaryColor,
       navBarStyle: NavBarStyle.style12,
+      decoration: const NavBarDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+        colorBehindNavBar: Colors.white,
+      ),
     );
   }
 

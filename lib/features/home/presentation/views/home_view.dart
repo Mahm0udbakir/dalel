@@ -22,7 +22,6 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: HomeBottomNavBar(),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

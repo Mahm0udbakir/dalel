@@ -2,6 +2,14 @@
 class MyAppAssets {
   MyAppAssets._();
   
+  /// Assets for assetsImagesCart
+  /// assets/images/cart.svg
+  static const String assetsImagesCart = "assets/images/cart.svg";
+
+  /// Assets for assetsImagesCartInactive
+  /// assets/images/cart-inactive.svg
+  static const String assetsImagesCartInactive = "assets/images/cart-inactive.svg";
+
   /// Assets for assetsImagesForgotPassword
   /// assets/images/ForgotPassword.jpeg
   static const String assetsImagesForgotPassword = "assets/images/ForgotPassword.jpeg";
@@ -46,13 +54,13 @@ class MyAppAssets {
   /// assets/images/OrderSuccess.jpeg
   static const String assetsImagesOrderSuccess = "assets/images/OrderSuccess.jpeg";
 
-  /// Assets for assetsImagesPerson
-  /// assets/images/person.svg
-  static const String assetsImagesProfile = "assets/images/person.svg";
+  /// Assets for assetsImagesProfile
+  /// assets/images/profile.svg
+  static const String assetsImagesProfile = "assets/images/profile.svg";
 
-  /// Assets for assetsImagesPersonInactive
-  /// assets/images/person-inactive.svg
-  static const String assetsImagesProfileInactive = "assets/images/person-inactive.svg";
+  /// Assets for assetsImagesProfileInactive
+  /// assets/images/profile-inactive.svg
+  static const String assetsImagesProfileInactive = "assets/images/profile-inactive.svg";
 
   /// Assets for assetsImagesSearch
   /// assets/images/search.svg
@@ -61,14 +69,6 @@ class MyAppAssets {
   /// Assets for assetsImagesSearchInactive
   /// assets/images/search-inactive.svg
   static const String assetsImagesSearchInactive = "assets/images/search-inactive.svg";
-
-  /// Assets for assetsImagesShoppingCart
-  /// assets/images/shopping-cart.svg
-  static const String assetsImagesCart = "assets/images/shopping-cart.svg";
-
-  /// Assets for assetsImagesShoppingCartInactive
-  /// assets/images/shopping-cart-inactive.svg
-  static const String assetsImagesCartInactive = "assets/images/shopping-cart-inactive.svg";
 
   /// Assets for assetsImagesSuccess
   /// assets/images/Success.png
