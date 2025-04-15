@@ -1,4 +1,5 @@
 import 'package:dalel/core/functions/navigate.dart';
+import 'package:dalel/features/home/presentation/widgets/home_bottom_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: HomeBottomNavBar(),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
