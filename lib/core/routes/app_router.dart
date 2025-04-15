@@ -2,7 +2,7 @@ import 'package:dalel/features/auth/presentation/view_model/cubit/auth_cubit.dar
 import 'package:dalel/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_up_view.dart';
-import 'package:dalel/features/home/presentation/views/home_view.dart';
+import 'package:dalel/features/home/presentation/widgets/home_bottom_nav_bar.dart';
 import 'package:dalel/features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:dalel/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +43,8 @@ class AppRouter {
         ),
       ),
       GoRoute(
-        path: '/home',
-        builder: (context, state) => const HomeView(),
+        path: '/homeBottomNavBar',
+        builder: (context, state) => HomeBottomNavBar(),
       ),
     ],
     // Optional: Error page for undefined routes

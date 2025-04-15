@@ -25,7 +25,7 @@ class CustomSignInForm extends StatelessWidget {
         } else if (state is SignInSuccessState) {
           if (FirebaseAuth.instance.currentUser!.emailVerified) {
             successSnackBar(context, state);
-            navigateWithOutBackButton(context, '/home');
+            navigateWithOutBackButton(context, '/homeBottomNavBar');
           } else {
             infoSnackBar(context,
                 "This email is not verified yet, please check your email.");
