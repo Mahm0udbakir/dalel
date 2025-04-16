@@ -8,6 +8,18 @@ abstract class MyAppTextStyles {
     fontWeight: FontWeight.w400,
     color: MyAppColors.deepBrown,
   );
+  static final pacifico400size30 = TextStyle(
+    fontFamily: 'Pacifico',
+    fontSize: 30,
+    fontWeight: FontWeight.w400,
+    color: MyAppColors.deepBrown,
+  );
+  static const pacifico700size32 = TextStyle(
+    fontFamily: 'Pacifico',
+    fontSize: 45,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
   static const poppins300size16 = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 16,
@@ -18,6 +30,12 @@ abstract class MyAppTextStyles {
     fontFamily: 'Poppins',
     fontSize: 16,
     fontWeight: FontWeight.w400,
+    color: MyAppColors.deepBrown,
+  );
+  static final poppins500size20 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
     color: MyAppColors.deepBrown,
   );
   static const poppins500size16 = TextStyle(
@@ -37,11 +55,5 @@ abstract class MyAppTextStyles {
     fontSize: 28,
     fontWeight: FontWeight.w600,
     color: Colors.black,
-  );
-  static const saira700size32 = TextStyle(
-    fontFamily: 'Pacifico',
-    fontSize: 45,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
   );
 }

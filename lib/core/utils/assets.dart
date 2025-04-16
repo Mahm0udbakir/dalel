@@ -2,6 +2,10 @@
 class MyAppAssets {
   MyAppAssets._();
   
+  /// Assets for assetsImagesAncient
+  /// assets/images/ancient.png
+  static const String assetsImagesAncient = "assets/images/ancient.png";
+
   /// Assets for assetsImagesCart
   /// assets/images/cart.svg
   static const String assetsImagesCart = "assets/images/cart.svg";
@@ -37,6 +41,10 @@ class MyAppAssets {
   /// Assets for assetsImagesHomeInactive
   /// assets/images/home-inactive.svg
   static const String assetsImagesHomeInactive = "assets/images/home-inactive.svg";
+
+  /// Assets for assetsImagesMenu
+  /// assets/images/menu.png
+  static const String assetsImagesMenu = "assets/images/menu.png";
 
   /// Assets for assetsImagesOnBoarding1
   /// assets/images/OnBoarding1.jpeg

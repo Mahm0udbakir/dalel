@@ -16,7 +16,7 @@ class CustomSignInBanner extends StatelessWidget {
         children: [
           const Text(
             MyAppStrings.appName,
-            style: MyAppTextStyles.saira700size32,
+            style: MyAppTextStyles.pacifico700size32,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
