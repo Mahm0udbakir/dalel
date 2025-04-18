@@ -1,49 +1,60 @@
-import 'package:dalel/core/utils/assets.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CardItem extends StatelessWidget {
-  const CardItem({super.key});
+class OptionItem extends StatelessWidget {
+  const OptionItem({super.key, required this.name, required this.image});
+  final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 95,
-      height: 170,
+      height: 96,
+      width: 196,
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-                color: MyAppColors.grey,
-                blurRadius: 10,
-                offset: const Offset(0, 5))
-          ]),
-      child: Column(
-        children: [
-          Container(
-            height: 124,
-            width: 95,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-              image: DecorationImage(
-                image: AssetImage(MyAppAssets.assetsImagesOnBoarding2),
-                fit: BoxFit.fill,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 48,
+              width: 68,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                name,
+                style: MyAppTextStyles.poppins500size16.copyWith(
+                  color: MyAppColors.deepBrown,
+                ),
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
-          ),
-          Text(
-            "Lion King",
-            style: MyAppTextStyles.poppins500size16.copyWith(
-              color: MyAppColors.deepBrown,
+            const SizedBox(height: 24),
+            Container(
+              height: 64,
+              width: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Image.network(image),
             ),
-            maxLines: 2,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

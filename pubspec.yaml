@@ -83,6 +83,7 @@ flutter:
         - asset: assets/fonts/Saira-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
 flutter_assets:
   assets_path: assets/images
   output_path: lib/core/utils/

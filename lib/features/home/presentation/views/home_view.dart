@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           slivers: [
             SliverToBoxAdapter(
-              child: HistoryicalPeriodsSection(),
+              child: HistoricalPeriodsSection(),
             ),
             SliverToBoxAdapter(
               child: HistoricalCharactersSection(),

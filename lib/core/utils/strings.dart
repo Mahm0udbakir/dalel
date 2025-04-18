@@ -70,7 +70,7 @@ abstract class MyAppStrings {
       haventReceivedVerificationCode = "Haven’t received verification code?";
 }
 
-abstract class FireBaseStrings {
+abstract class MyFireBaseStrings {
   static const String historicalPeriods = "historical_periods";
   static const String name = "name";
   static const String description = "description";
