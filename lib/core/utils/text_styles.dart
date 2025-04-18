@@ -8,9 +8,9 @@ abstract class MyAppTextStyles {
     fontWeight: FontWeight.w400,
     color: MyAppColors.deepBrown,
   );
-  static final pacifico400size30 = TextStyle(
+  static final pacifico400size28 = TextStyle(
     fontFamily: 'Pacifico',
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: FontWeight.w400,
     color: MyAppColors.deepBrown,
   );

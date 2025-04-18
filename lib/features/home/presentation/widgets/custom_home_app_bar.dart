@@ -11,18 +11,17 @@
     Widget build(BuildContext context) {
       return Column(
         children: [
-          const SizedBox(height: 28),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(MyAppAssets.assetsImagesMenu),
               CustomTextWidget(
                 text: MyAppStrings.appName,
-                style: MyAppTextStyles.pacifico400size30,
+                style: MyAppTextStyles.pacifico400size28,
               ),
             ],
           ),
-          const SizedBox(height: 32),
         ],
       );
     }
