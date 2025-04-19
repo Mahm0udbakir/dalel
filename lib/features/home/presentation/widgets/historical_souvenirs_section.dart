@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dalel/core/utils/assets.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/widgets/custom_list_view.dart';
 import 'package:dalel/core/widgets/custom_option_item.dart';
 import 'package:dalel/core/widgets/custom_text_header.dart';
+import 'package:dalel/features/home/data/model/historical_periods_model.dart';
 import 'package:flutter/material.dart';
 
 class HistoricalSouvenirsSection extends StatelessWidget {
@@ -22,11 +22,9 @@ class HistoricalSouvenirsSection extends StatelessWidget {
               .get(),
           //temporary
           itemBuilder: (context, index, data) {
-            return OptionItem(
-              name: data['name'] ?? 'Unknown Period',
-              image: data['image'] ?? MyAppAssets.assetsImagesOnBoarding2,
-            );
-          },
+               final model = HistoricalPeriodsModel.fromJson(data);
+            return OptionItem(historicalPeriodsModel: model);
+       },
           height: 170,
           separatorItem: const SizedBox(width: 16),
         ),

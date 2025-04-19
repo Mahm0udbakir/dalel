@@ -15,6 +15,7 @@ class CustomListView extends StatelessWidget {
   final Widget Function(BuildContext, int, Map<String, dynamic>) itemBuilder;
   final Widget separatorItem;
   final Future<QuerySnapshot<Map<String, dynamic>>> future;
+
   @override
   Widget build(BuildContext context) {
     return Column(

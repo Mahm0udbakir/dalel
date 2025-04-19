@@ -1,11 +1,11 @@
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/text_styles.dart';
+import 'package:dalel/features/home/data/model/historical_periods_model.dart';
 import 'package:flutter/material.dart';
 
 class OptionItem extends StatelessWidget {
-  const OptionItem({super.key, required this.name, required this.image});
-  final String name;
-  final String image;
+  const OptionItem({super.key,required this.historicalPeriodsModel});
+  final HistoricalPeriodsModel historicalPeriodsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class OptionItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                name,
+                historicalPeriodsModel.name ?? 'Unknown Period',
                 style: MyAppTextStyles.poppins500size16.copyWith(
                   color: MyAppColors.deepBrown,
                 ),
@@ -51,7 +51,9 @@ class OptionItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Image.network(image),
+              child: Image.network(
+                historicalPeriodsModel.image ?? 'Unknown Period',
+              ),
             ),
           ],
         ),
