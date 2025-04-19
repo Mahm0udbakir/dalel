@@ -22,9 +22,10 @@ class HistoricalPeriodsSection extends StatelessWidget {
               .get(),
           itemBuilder: (context, index, data) {
             final model = HistoricalPeriodsModel.fromJson(data);
-            return OptionItem(historicalPeriodsModel: model);
+            return OptionItem(model: model);
           },
           separatorItem: const SizedBox(width: 16),
+          shimmerContainer: const OptionItem(),
         ),
         const SizedBox(height: 32),
       ],

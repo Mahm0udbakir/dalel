@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dalel/core/utils/colors.dart';
+import 'package:dalel/core/widgets/custom_shrimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CustomListView extends StatelessWidget {
   const CustomListView(
@@ -9,11 +8,13 @@ class CustomListView extends StatelessWidget {
       required this.itemBuilder,
       required this.height,
       required this.separatorItem,
-      required this.future});
+      required this.future,
+      required this.shimmerContainer});
 
   final double height;
   final Widget Function(BuildContext, int, Map<String, dynamic>) itemBuilder;
   final Widget separatorItem;
+  final Widget shimmerContainer;
   final Future<QuerySnapshot<Map<String, dynamic>>> future;
 
   @override
@@ -32,11 +33,10 @@ class CustomListView extends StatelessWidget {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: SpinKitCubeGrid(
-                  color: MyAppColors.primaryColor,
-                  size: 35,
-                ),
+              return CustomShrimmer(
+                height: height,
+                shimmerContainer: shimmerContainer,
+                separatorItem: separatorItem,
               );
             }
             if (snapshot.connectionState == ConnectionState.done) {

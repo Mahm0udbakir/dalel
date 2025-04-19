@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/strings.dart';
+import 'package:dalel/core/widgets/custom_card_item.dart';
 import 'package:dalel/core/widgets/custom_list_view.dart';
 import 'package:dalel/core/widgets/custom_option_item.dart';
 import 'package:dalel/core/widgets/custom_text_header.dart';
@@ -22,11 +23,13 @@ class HistoricalCharactersSection extends StatelessWidget {
               .get(),
           //temporary
           itemBuilder: (context, index, data) {
-                    final model = HistoricalPeriodsModel.fromJson(data);
-            return OptionItem(historicalPeriodsModel: model);
-  },
-            height: 170,
-            separatorItem: const SizedBox(width: 16)),
+            final model = HistoricalPeriodsModel.fromJson(data);
+            return OptionItem(model: model);
+          },
+          height: 170,
+          separatorItem: const SizedBox(width: 16),
+          shimmerContainer: const CardItem(),
+        ),
         const SizedBox(height: 32),
       ],
     );

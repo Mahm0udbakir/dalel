@@ -1,11 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/text_styles.dart';
+import 'package:dalel/core/widgets/custom_shrimmer.dart';
 import 'package:dalel/features/home/data/model/historical_periods_model.dart';
 import 'package:flutter/material.dart';
 
 class OptionItem extends StatelessWidget {
-  const OptionItem({super.key,required this.historicalPeriodsModel});
-  final HistoricalPeriodsModel historicalPeriodsModel;
+  const OptionItem({
+    super.key,
+    this.model,
+  });
+  final HistoricalPeriodsModel? model;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class OptionItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                historicalPeriodsModel.name ?? 'Unknown Period',
+                model?.name ?? 'Unknown Period',
                 style: MyAppTextStyles.poppins500size16.copyWith(
                   color: MyAppColors.deepBrown,
                 ),
@@ -44,16 +49,32 @@ class OptionItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(
+                width: 8), // Fixed spacing (was incorrectly height: 24)
             Container(
               height: 64,
-              width: 80,
+              width: 47,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Image.network(
-                historicalPeriodsModel.image ?? 'Unknown Period',
-              ),
+              child: model?.image == null
+                  ? const CustomShrimmer()
+                  : CachedNetworkImage(
+                      imageUrl: model!.image!,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => CustomShrimmer(
+                        shimmerContainer: Container(
+                          height: 64,
+                          width: 47,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
             ),
           ],
         ),
