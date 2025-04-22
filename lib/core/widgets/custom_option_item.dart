@@ -49,8 +49,7 @@ class OptionItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(
-                width: 8), // Fixed spacing (was incorrectly height: 24)
+            const SizedBox(width: 8),
             Container(
               height: 64,
               width: 47,

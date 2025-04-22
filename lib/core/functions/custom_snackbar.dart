@@ -1,32 +1,41 @@
-import 'package:dalel/features/auth/presentation/view_model/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-successSnackBar(BuildContext context, SuccessState state) {
+abstract interface class SnackBarState {
+  String? get message;
+}
+
+void successSnackBar(BuildContext context, SnackBarState state) {
   showTopSnackBar(
     Overlay.of(context),
     CustomSnackBar.success(
-      message: state.successMessage,
+      message: state.message ?? "Operation successful",
     ),
   );
 }
 
-infoSnackBar(BuildContext context, String message) {
+void errorSnackBar(BuildContext context, SnackBarState state) {
+  showTopSnackBar(
+    Overlay.of(context),
+    CustomSnackBar.error(
+      message: state.message ?? "An error occurred",
+    ),
+  );
+}
+
+class InfoSnackBarState implements SnackBarState {
+  @override
+  final String message;
+  InfoSnackBarState(this.message);
+}
+
+void infoSnackBar(BuildContext context, SnackBarState state) {
   showTopSnackBar(
     Overlay.of(context),
     CustomSnackBar.info(
       backgroundColor: Colors.yellow,
-      message: message,
-    ),
-  );
-}
-
-errorSnackBar(BuildContext context, ErrorState state) {
-  showTopSnackBar(
-    Overlay.of(context),
-    CustomSnackBar.error(
-      message: state.errorMessage,
+      message: state.message ?? "Loading...",
     ),
   );
 }

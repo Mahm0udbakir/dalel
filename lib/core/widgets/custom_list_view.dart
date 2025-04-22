@@ -1,67 +1,59 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dalel/core/functions/custom_snackbar.dart';
+import 'package:dalel/core/global_states/global_states.dart';
 import 'package:dalel/core/widgets/custom_shrimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomListView extends StatelessWidget {
+class CustomListView<M, C extends Cubit<S>, S> extends StatelessWidget {
   const CustomListView(
       {super.key,
       required this.itemBuilder,
       required this.height,
       required this.separatorItem,
-      required this.future,
-      required this.shimmerContainer});
+      required this.shimmerContainer,
+      required this.cubit,
+      required this.getData});
 
+  final C cubit;
+  final List<M> Function(S) getData;
   final double height;
-  final Widget Function(BuildContext, int, Map<String, dynamic>) itemBuilder;
+  final Widget Function(BuildContext, int, M) itemBuilder;
   final Widget separatorItem;
   final Widget shimmerContainer;
-  final Future<QuerySnapshot<Map<String, dynamic>>> future;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FutureBuilder(
-          future: future,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text("Something went wrong");
-            }
-
-            if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
-              return const Text("Document does not exist");
-            }
-
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CustomShrimmer(
+    return BlocConsumer<C, S>(
+      bloc: cubit,
+      listener: (context, state) {
+        if (state is GlobalErrorState) {
+          errorSnackBar(context, state);
+        }
+      },
+      builder: (context, state) {
+        final data = getData(state);
+        return state is GlobalLoadingState
+            ? CustomShrimmer(
                 height: height,
                 shimmerContainer: shimmerContainer,
                 separatorItem: separatorItem,
-              );
-            }
-            if (snapshot.connectionState == ConnectionState.done) {
-              final documents = snapshot.data!.docs;
-              return SizedBox(
+              )
+            : SizedBox(
                 height: height,
                 child: ListView.separated(
                   clipBehavior: Clip.none,
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    final data = documents[index].data();
-                    return itemBuilder(context, index, data);
+                    return itemBuilder(context, index, data[index]);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return separatorItem;
                   },
-                  itemCount: documents.length,
+                  itemCount: data.length,
                 ),
               );
-            }
-            return const SizedBox();
-          },
-        ),
-      ],
+      },
     );
   }
 }

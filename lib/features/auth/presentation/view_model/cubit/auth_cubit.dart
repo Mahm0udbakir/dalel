@@ -101,7 +101,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
   void togglePasswordVisibility() {
     passwordVisible = !passwordVisible;
-    emit(PasswordVisiblityChangedState());
+    emit(PasswordVisibilityChangedState());
   }
 
   Future<void> resetPasswordWithLink() async {

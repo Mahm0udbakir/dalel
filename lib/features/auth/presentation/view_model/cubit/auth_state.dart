@@ -1,68 +1,92 @@
-class AuthStates {}
+import 'package:dalel/core/global_states/global_states.dart';
+
+abstract class AuthStates extends GlobalState {}
 
 final class AuthInitial extends AuthStates {}
 
-// Main States
-
-abstract class SuccessState extends AuthStates {
-  String get successMessage;
-}
-
-abstract class ErrorState extends AuthStates {
-  String get errorMessage;
-}
-
 //! Sign Up States
-
-final class SignUpSuccessState extends SuccessState {
+final class SignUpSuccessState extends AuthStates
+    implements GlobalSuccessState {
   @override
-  final String successMessage;
-  SignUpSuccessState({required this.successMessage});
+  final String? successMessage;
+  SignUpSuccessState({this.successMessage});
+  @override
+  dynamic get data => null;
+  @override
+  String? get message => successMessage;
 }
 
-final class SignUpLoadingState extends AuthStates {}
-
-final class SignUpErrorState extends ErrorState {
+final class SignUpLoadingState extends AuthStates
+    implements GlobalLoadingState {
   @override
-  final String errorMessage;
-  SignUpErrorState({required this.errorMessage});
+  final String? loadingMessage;
+  SignUpLoadingState({this.loadingMessage});
+}
+
+final class SignUpErrorState extends AuthStates implements GlobalErrorState {
+  @override
+  final String? errorMessage;
+  SignUpErrorState({this.errorMessage});
+  @override
+  String? get message => errorMessage;
 }
 
 //! Sign In States
-
-final class SignInSuccessState extends SuccessState {
+final class SignInSuccessState extends AuthStates
+    implements GlobalSuccessState {
   @override
-  final String successMessage;
-  SignInSuccessState({required this.successMessage});
+  final String? successMessage;
+  SignInSuccessState({this.successMessage});
+  @override
+  dynamic get data => null;
+  @override
+  String? get message => successMessage;
 }
 
-final class SignInLoadingState extends AuthStates {}
-
-final class SignInErrorState extends ErrorState {
+final class SignInLoadingState extends AuthStates
+    implements GlobalLoadingState {
   @override
-  final String errorMessage;
-  SignInErrorState({required this.errorMessage});
+  final String? loadingMessage;
+  SignInLoadingState({this.loadingMessage});
 }
 
+final class SignInErrorState extends AuthStates implements GlobalErrorState {
+  @override
+  final String? errorMessage;
+  SignInErrorState({this.errorMessage});
+  @override
+  String? get message => errorMessage;
+}
 
 //! Forgot Password States
-
-final class ForgotPasswordSuccessState extends SuccessState {
+final class ForgotPasswordSuccessState extends AuthStates
+    implements GlobalSuccessState {
   @override
-  final String successMessage;
-  ForgotPasswordSuccessState({required this.successMessage});
+  final String? successMessage;
+  ForgotPasswordSuccessState({this.successMessage});
+  @override
+  dynamic get data => null;
+  @override
+  String? get message => successMessage;
 }
 
-final class ForgotPasswordLoadingState extends AuthStates {}
-
-final class ForgotPasswordErrorState extends ErrorState {
+final class ForgotPasswordLoadingState extends AuthStates
+    implements GlobalLoadingState {
   @override
-  final String errorMessage;
-  ForgotPasswordErrorState({required this.errorMessage});
+  final String? loadingMessage;
+  ForgotPasswordLoadingState({this.loadingMessage});
+}
+
+final class ForgotPasswordErrorState extends AuthStates
+    implements GlobalErrorState {
+  @override
+  final String? errorMessage;
+  ForgotPasswordErrorState({this.errorMessage});
+  @override
+  String? get message => errorMessage;
 }
 
 //! Other States
-
 final class TermsAndConditionsCheckedState extends AuthStates {}
 
-final class PasswordVisiblityChangedState extends AuthStates {}
+final class PasswordVisibilityChangedState extends AuthStates {}

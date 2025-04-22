@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/core/widgets/custom_option_item.dart';
 import 'package:dalel/core/widgets/custom_list_view.dart';
 import 'package:dalel/core/widgets/custom_text_header.dart';
-import 'package:dalel/features/home/data/model/historical_periods_model.dart';
+import 'package:dalel/features/home/presentation/view_model/cubit/home_cubit.dart';
+import 'package:dalel/features/home/presentation/view_model/cubit/home_state.dart';
 import 'package:flutter/material.dart';
 
 class HistoricalPeriodsSection extends StatelessWidget {
@@ -17,12 +17,17 @@ class HistoricalPeriodsSection extends StatelessWidget {
         const SizedBox(height: 16),
         CustomListView(
           height: 96,
-          future: FirebaseFirestore.instance
-              .collection(MyFireBaseStrings.historicalPeriods)
-              .get(),
-          itemBuilder: (context, index, data) {
-            final model = HistoricalPeriodsModel.fromJson(data);
-            return OptionItem(model: model);
+          cubit: HomeCubit(),
+          getData: (state) {
+            if (state is HistoricalPeriodSuccessState) {
+              return state.historicalPeriods;
+            }
+            return [];
+          },
+          itemBuilder: (context, index, model) {
+            return OptionItem(
+              model: model,
+            );
           },
           separatorItem: const SizedBox(width: 16),
           shimmerContainer: const OptionItem(),
