@@ -15,8 +15,8 @@ class CustomListView<M, C extends Cubit<S>, S> extends StatelessWidget {
       required this.getData});
 
   final C cubit;
-  final List<M> Function(S) getData;
   final double height;
+  final List<M> Function(S) getData;
   final Widget Function(BuildContext, int, M) itemBuilder;
   final Widget separatorItem;
   final Widget shimmerContainer;
