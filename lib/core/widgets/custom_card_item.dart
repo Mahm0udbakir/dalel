@@ -1,11 +1,14 @@
-import 'package:dalel/core/utils/assets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dalel/core/models/data_model.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/text_styles.dart';
+import 'package:dalel/core/widgets/custom_shrimmer.dart';
 import 'package:flutter/material.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem({super.key});
+  const CardItem({super.key, this.model});
 
+  final DataModel? model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,14 +31,28 @@ class CardItem extends StatelessWidget {
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-              image: DecorationImage(
-                image: AssetImage(MyAppAssets.assetsImagesOnBoarding2),
-                fit: BoxFit.fill,
-              ),
             ),
+            child: model?.image == null
+                ? const CustomShrimmer()
+                : CachedNetworkImage(
+                    imageUrl: model!.image!,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => CustomShrimmer(
+                      shimmerContainer: Container(
+                        height: 64,
+                        width: 47,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
           ),
           Text(
-            "Lion King",
+            model?.name! ?? 'Unknown Period',
             style: MyAppTextStyles.poppins500size16.copyWith(
               color: MyAppColors.deepBrown,
             ),

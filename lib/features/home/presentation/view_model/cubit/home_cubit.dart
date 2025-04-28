@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/strings.dart';
+import 'package:dalel/features/home/data/model/historical_characters_model.dart';
 import 'package:dalel/features/home/data/model/historical_periods_model.dart';
 import 'package:dalel/features/home/data/model/wars_model.dart';
 import 'package:dalel/features/home/presentation/view_model/cubit/home_state.dart';
@@ -9,6 +10,7 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(HomeInitial());
 
   List<HistoricalPeriodsModel> historicalPeriods = [];
+  List<HistoricalCharactersModel> historicalCharacters = [];
   List<WarsModel> warsList = [];
 
   getHistoricalPeriods() async {
@@ -29,6 +31,26 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(HistoricalPeriodSuccessState(historicalPeriods: historicalPeriods));
     } catch (e) {
       emit(HistoricalPeriodErrorState(errorMessage: e.toString()));
+    }
+  }
+
+  getHistoricalCharacters() async {
+    emit(HistoricalCharactersLoadingState());
+    try {
+      await FirebaseFirestore.instance
+          .collection(MyFireBaseStrings.historicalCharacters)
+          .get()
+          .then((onValue) {
+        for (var element in onValue.docs) {
+          getWarsList(element);
+          historicalCharacters
+              .add(HistoricalCharactersModel.fromJson(element.data()));
+        }
+      });
+      emit(HistoricalCharactersSuccessState(
+          historicalCharacters: historicalCharacters));
+    } catch (e) {
+      emit(HistoricalCharactersErrorState(errorMessage: e.toString()));
     }
   }
 

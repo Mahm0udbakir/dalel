@@ -29,7 +29,7 @@ class HistoricalPeriodsSection extends StatelessWidget {
           itemBuilder: (context, index, model) {
             return OptionItem(
               model: model,
-            );
+            );  
           },
           separatorItem: const SizedBox(width: 16),
           shimmerContainer: const OptionItem(),
