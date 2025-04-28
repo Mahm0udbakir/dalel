@@ -21,7 +21,7 @@ class HistoricalCharactersSection extends StatelessWidget {
           cubit: context.read<HomeCubit>(),
           getData: (state) {
             if (state is HistoricalCharactersSuccessState) {
-              return state.data;
+              return state.historicalCharacters;
             }
             return [];
           },
@@ -29,9 +29,7 @@ class HistoricalCharactersSection extends StatelessWidget {
             return CardItem(model: model);
           },
           shimmerContainer: const CardItem(),
-          separatorItem: const SizedBox(
-            width: 16,
-          ),
+          separatorItem: const SizedBox(width: 16),
         ),
         const SizedBox(height: 32),
       ],

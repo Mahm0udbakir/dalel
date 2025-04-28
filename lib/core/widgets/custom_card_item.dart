@@ -30,17 +30,24 @@ class CardItem extends StatelessWidget {
             width: 95,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+                topLeft: Radius.circular(5),
+                topRight: Radius.circular(5),
+              ),
             ),
             child: model?.image == null
-                ? const CustomShrimmer()
+                ? const CustomShrimmer(
+                    shimmerContainer: SizedBox(
+                      height: 124,
+                      width: 95,
+                       ),
+                  )
                 : CachedNetworkImage(
                     imageUrl: model!.image!,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => CustomShrimmer(
                       shimmerContainer: Container(
-                        height: 64,
-                        width: 47,
+                        height: 124,
+                        width: 95,
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(8),

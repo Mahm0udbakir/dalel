@@ -26,9 +26,9 @@ class HomeCubit extends Cubit<HomeStates> {
             historicalPeriods
                 .add(HistoricalPeriodsModel.fromJson(doc.data(), warsList));
           }
+      emit(HistoricalPeriodSuccessState(historicalPeriods: historicalPeriods));
         },
       );
-      emit(HistoricalPeriodSuccessState(historicalPeriods: historicalPeriods));
     } catch (e) {
       emit(HistoricalPeriodErrorState(errorMessage: e.toString()));
     }
@@ -40,17 +40,20 @@ class HomeCubit extends Cubit<HomeStates> {
       await FirebaseFirestore.instance
           .collection(MyFireBaseStrings.historicalCharacters)
           .get()
-          .then((onValue) {
-        for (var element in onValue.docs) {
-          getWarsList(element);
-          historicalCharacters
-              .add(HistoricalCharactersModel.fromJson(element.data()));
-        }
-      });
-      emit(HistoricalCharactersSuccessState(
-          historicalCharacters: historicalCharacters));
+          .then(
+        (value) async {
+          for (var doc in value.docs) {
+            await getWarsList(doc);
+            historicalCharacters
+                .add(HistoricalCharactersModel.fromJson(doc.data(), warsList));
+          }
+          emit(HistoricalCharactersSuccessState(
+              historicalCharacters: historicalCharacters));
+        },
+      );
     } catch (e) {
       emit(HistoricalCharactersErrorState(errorMessage: e.toString()));
+      print(e.toString());
     }
   }
 

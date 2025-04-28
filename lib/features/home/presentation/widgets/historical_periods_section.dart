@@ -18,8 +18,8 @@ class HistoricalPeriodsSection extends StatelessWidget {
         const CustomTextHeader(text: MyAppStrings.historicalPeriods),
         const SizedBox(height: 16),
         CustomListView<HistoricalPeriodsModel, HomeCubit, HomeStates>(
-          cubit: context.read<HomeCubit>(),
           height: 96,
+          cubit: context.read<HomeCubit>(),
           getData: (state) {
             if (state is HistoricalPeriodSuccessState) {
               return state.historicalPeriods;
@@ -27,12 +27,10 @@ class HistoricalPeriodsSection extends StatelessWidget {
             return [];
           },
           itemBuilder: (context, index, model) {
-            return OptionItem(
-              model: model,
-            );  
+            return OptionItem(model: model);
           },
-          separatorItem: const SizedBox(width: 16),
           shimmerContainer: const OptionItem(),
+          separatorItem: const SizedBox(width: 16),
         ),
         const SizedBox(height: 32),
       ],
