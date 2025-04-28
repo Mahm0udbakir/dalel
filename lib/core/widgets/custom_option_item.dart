@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dalel/core/models/data_model.dart';
 import 'package:dalel/core/utils/colors.dart';
 import 'package:dalel/core/utils/text_styles.dart';
 import 'package:dalel/core/widgets/custom_shrimmer.dart';
-import 'package:dalel/features/home/data/model/historical_periods_model.dart';
 import 'package:flutter/material.dart';
 
 class OptionItem extends StatelessWidget {
@@ -10,7 +10,7 @@ class OptionItem extends StatelessWidget {
     super.key,
     this.model,
   });
-  final HistoricalPeriodsModel? model;
+  final DataModel? model;
 
   @override
   Widget build(BuildContext context) {
