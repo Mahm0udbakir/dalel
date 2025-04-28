@@ -1,44 +1,23 @@
+import 'package:dalel/core/models/data_model.dart';
 import 'package:dalel/core/utils/strings.dart';
+import 'package:dalel/features/home/data/model/wars_model.dart';
 
-class HistoricalPeriodsModel {
-  final String? name;
-  final String? image;
-  final String? description;
-  final Map<String, dynamic>? wars;
+class HistoricalPeriodsModel extends DataModel {
+  final List<WarsModel> wars;
 
   HistoricalPeriodsModel({
-    this.name,
-    this.image,
-    this.description,
-    this.wars,
+    required super.name,
+    required super.image,
+    required super.description,
+    required this.wars,
   });
 
-  factory HistoricalPeriodsModel.fromJson(jsonData) {
+  factory HistoricalPeriodsModel.fromJson(jsonData, warsList) {
     return HistoricalPeriodsModel(
       name: jsonData[MyFireBaseStrings.name],
       image: jsonData[MyFireBaseStrings.image],
       description: jsonData[MyFireBaseStrings.description],
-      wars: jsonData[MyFireBaseStrings.wars],
-    );
-  }
-}
-
-class WarsModel {
-  final String? name;
-  final String? image;
-  final String? description;
-
-  WarsModel({
-    this.name,
-    this.image,
-    this.description,
-  });
-
-  factory WarsModel.fromJson(jsonData) {
-    return WarsModel(
-      name: jsonData[MyFireBaseStrings.name],
-      image: jsonData[MyFireBaseStrings.image],
-      description: jsonData[MyFireBaseStrings.description],
+      wars: warsList,
     );
   }
 }

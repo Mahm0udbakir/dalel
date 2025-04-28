@@ -5,9 +5,9 @@ import 'package:shimmer/shimmer.dart';
 class CustomShrimmer extends StatelessWidget {
   const CustomShrimmer({
     super.key,
-     this.height,
-     this.shimmerContainer,
-     this.separatorItem,
+    this.height,
+    this.shimmerContainer,
+    this.separatorItem,
   });
 
   final double? height;
@@ -26,10 +26,18 @@ class CustomShrimmer extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) {
-            return shimmerContainer;
+            return shimmerContainer ??
+                Container(
+                  height: 64,
+                  width: 47,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                );
           },
           separatorBuilder: (BuildContext context, int index) {
-            return separatorItem!;
+            return separatorItem ?? const SizedBox(width: 8);
           },
           itemCount: 6,
         ),
