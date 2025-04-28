@@ -4,7 +4,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 abstract interface class SnackBarState {
   String? get message;
-}
+} 
 
 void successSnackBar(BuildContext context, SnackBarState state) {
   showTopSnackBar(
