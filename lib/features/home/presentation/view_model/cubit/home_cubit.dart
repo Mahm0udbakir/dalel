@@ -26,9 +26,9 @@ class HomeCubit extends Cubit<HomeStates> {
             historicalPeriods
                 .add(HistoricalPeriodsModel.fromJson(doc.data(), warsList));
           }
-      emit(HistoricalPeriodSuccessState(historicalPeriods: historicalPeriods));
         },
       );
+      emit(HistoricalPeriodSuccessState(historicalPeriods: historicalPeriods));
     } catch (e) {
       emit(HistoricalPeriodErrorState(errorMessage: e.toString()));
     }
@@ -47,10 +47,10 @@ class HomeCubit extends Cubit<HomeStates> {
             historicalCharacters
                 .add(HistoricalCharactersModel.fromJson(doc.data(), warsList));
           }
-          emit(HistoricalCharactersSuccessState(
-              historicalCharacters: historicalCharacters));
         },
       );
+      emit(HistoricalCharactersSuccessState(
+          historicalCharacters: historicalCharacters));
     } catch (e) {
       emit(HistoricalCharactersErrorState(errorMessage: e.toString()));
       print(e.toString());
