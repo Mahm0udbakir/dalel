@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/core/utils/strings.dart';
 import 'package:dalel/features/home/data/model/historical_characters_model.dart';
 import 'package:dalel/features/home/data/model/historical_periods_model.dart';
+import 'package:dalel/features/home/data/model/historical_souvenirs_model.dart';
 import 'package:dalel/features/home/data/model/wars_model.dart';
 import 'package:dalel/features/home/presentation/view_model/cubit/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,63 +12,74 @@ class HomeCubit extends Cubit<HomeStates> {
 
   List<HistoricalPeriodsModel> historicalPeriods = [];
   List<HistoricalCharactersModel> historicalCharacters = [];
+  List<HistoricalSouvenirsModel> historicalSouvenirs = [];
   List<WarsModel> warsList = [];
 
   getHistoricalPeriods() async {
-    emit(HistoricalPeriodLoadingState());
+    emit(HomeLoadingState());
     try {
-      await FirebaseFirestore.instance
+      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
           .collection(MyFireBaseStrings.historicalPeriods)
-          .get()
-          .then(
-        (value) async {
-          for (var doc in value.docs) {
-            await getWarsList(doc);
-            historicalPeriods
-                .add(HistoricalPeriodsModel.fromJson(doc.data(), warsList));
-          }
-        },
-      );
-      emit(HistoricalPeriodSuccessState(historicalPeriods: historicalPeriods));
+          .get();
+      for (var doc in snapshot.docs) {
+        getWarsList(doc,
+            collectionName: MyFireBaseStrings.historicalCharacters);
+        historicalPeriods
+            .add(HistoricalPeriodsModel.fromJson(doc.data(), warsList));
+      }
+      emit(HomeSuccessState(historicalPeriods: historicalPeriods));
     } catch (e) {
-      emit(HistoricalPeriodErrorState(errorMessage: e.toString()));
+      emit(HomeErrorState(errorMessage: e.toString()));
     }
   }
 
   getHistoricalCharacters() async {
-    emit(HistoricalCharactersLoadingState());
+    emit(HomeLoadingState());
     try {
-      await FirebaseFirestore.instance
+      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
           .collection(MyFireBaseStrings.historicalCharacters)
-          .get()
-          .then(
-        (value) async {
-          for (var doc in value.docs) {
-            await getWarsList(doc);
-            historicalCharacters
-                .add(HistoricalCharactersModel.fromJson(doc.data(), warsList));
-          }
-        },
-      );
-      emit(HistoricalCharactersSuccessState(
-          historicalCharacters: historicalCharacters));
+          .get();
+      for (var doc in snapshot.docs) {
+        getWarsList(doc,
+            collectionName: MyFireBaseStrings.historicalCharacters);
+        historicalCharacters
+            .add(HistoricalCharactersModel.fromJson(doc.data(), warsList));
+      }
+      emit(HomeSuccessState(historicalCharacters: historicalCharacters));
     } catch (e) {
-      emit(HistoricalCharactersErrorState(errorMessage: e.toString()));
-      print(e.toString());
+      emit(HomeErrorState(errorMessage: e.toString()));
     }
   }
 
-  Future<void> getWarsList(
-      QueryDocumentSnapshot<Map<String, dynamic>> doc) async {
-    await FirebaseFirestore.instance
-        .collection(MyFireBaseStrings.historicalPeriods)
+  getHistoricalSouvenirs() async {
+    emit(HomeLoadingState());
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
+          .collection(MyFireBaseStrings.historicalSouvenirs)
+          .get();
+
+      for (var doc in snapshot.docs) {
+        historicalSouvenirs.add(HistoricalSouvenirsModel.fromJson(doc.data()));
+      }
+      emit(HomeSuccessState(historicalSouvenirs: historicalSouvenirs));
+    } catch (e) {
+      emit(HomeErrorState(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> getWarsList(QueryDocumentSnapshot<Map<String, dynamic>> doc,
+      {required String collectionName}) async {
+    QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+        .instance
+        .collection(collectionName)
         .doc(doc.id)
         .collection(MyFireBaseStrings.wars)
-        .get()
-        .then((value) {
-      for (var doc in value.docs) {
-        warsList.add(WarsModel.fromJson(doc.data()));
-      }
-    });
+        .get();
+    for (var doc in snapshot.docs) {
+      warsList.add(WarsModel.fromJson(doc.data()));
+    }
   }
 }

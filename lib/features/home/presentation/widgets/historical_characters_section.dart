@@ -20,8 +20,8 @@ class HistoricalCharactersSection extends StatelessWidget {
           height: 170,
           cubit: context.read<HomeCubit>(),
           getData: (state) {
-            if (state is HistoricalCharactersSuccessState) {
-              return state.historicalCharacters;
+            if (state is HomeSuccessState) {
+              return state.historicalCharacters!;
             }
             return [];
           },

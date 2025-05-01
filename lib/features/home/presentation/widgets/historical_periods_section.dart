@@ -21,8 +21,8 @@ class HistoricalPeriodsSection extends StatelessWidget {
           height: 96,
           cubit: context.read<HomeCubit>(),
           getData: (state) {
-            if (state is HistoricalPeriodSuccessState) {
-              return state.historicalPeriods;
+            if (state is HomeSuccessState) {
+              return state.historicalPeriods!;
             }
             return [];
           },

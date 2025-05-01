@@ -73,6 +73,7 @@ abstract class MyAppStrings {
 abstract class MyFireBaseStrings {
   static const String historicalPeriods = "historical_periods";
   static const String historicalCharacters = "historical_characters";
+  static const String historicalSouvenirs = "historical_souvenirs";
   static const String name = "name";
   static const String description = "description";
   static const String image = "image";
