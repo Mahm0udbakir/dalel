@@ -2,7 +2,7 @@ import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/functions/navigate.dart';
 import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/cache_keys.dart';
-import 'package:dalel/features/onBoarding/presentation/widgets/cutom_nav_bar.dart';
+import 'package:dalel/features/onBoarding/presentation/widgets/custom_nav_bar.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/onboarding_body.dart';
 import 'package:dalel/features/onBoarding/presentation/widgets/onboarding_buttons.dart';
 import 'package:flutter/material.dart';
