@@ -59,7 +59,7 @@ class OptionItem extends StatelessWidget {
               child: model?.image == null
                   ? const CustomShrimmer()
                   : CachedNetworkImage(
-                      imageUrl: model!.image!,
+                      imageUrl: model!.image,
                       fit: BoxFit.cover,
                       placeholder: (context, url) => CustomShrimmer(
                         shimmerContainer: Container(

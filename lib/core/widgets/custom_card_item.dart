@@ -42,7 +42,7 @@ class CardItem extends StatelessWidget {
                        ),
                   )
                 : CachedNetworkImage(
-                    imageUrl: model!.image!,
+                    imageUrl: model!.image,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => CustomShrimmer(
                       shimmerContainer: Container(
@@ -59,7 +59,7 @@ class CardItem extends StatelessWidget {
                   ),
           ),
           Text(
-            model?.name! ?? 'Unknown Period',
+            model?.name ?? 'Unknown Period',
             style: MyAppTextStyles.poppins500size16.copyWith(
               color: MyAppColors.deepBrown,
             ),
