@@ -8,11 +8,15 @@ class HistoricalSouvenirsModel extends DataModel {
     required super.description,
   });
 
-  factory HistoricalSouvenirsModel.fromJson(jsonData) {
-    return HistoricalSouvenirsModel(
-      name: jsonData[MyFireBaseStrings.name],
-      image: jsonData[MyFireBaseStrings.image],
-      description: jsonData[MyFireBaseStrings.description],
-    );
+  factory HistoricalSouvenirsModel.fromJson(Map<String, dynamic> jsonData) {
+    try {
+      return HistoricalSouvenirsModel(
+        name: jsonData[MyFireBaseStrings.name] ?? 'Unknown',
+        image: jsonData[MyFireBaseStrings.image] ?? '',
+        description: jsonData[MyFireBaseStrings.description] ?? '',
+      );
+    } catch (e) {
+      throw Exception('Error parsing HistoricalSouvenirsModel: $e');
+    }
   }
 }
